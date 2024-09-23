@@ -26,9 +26,11 @@ export class Board {
 export class Model {
     words : string[]
     board : Board
+    numMoves : number;
+    numUndos : number;
+    points : number;
 
     constructor(puzzle) {
-
         this.words = [ "in,vis,i,ble" , "im,mac,u,late", "af,fil,i,ate", "un,der,wa,ter" ]
 
         let board = new Board()
@@ -38,6 +40,9 @@ export class Model {
             }
         }
         this.board = board
+        this.numMoves = 0
+        this.numUndos = 0
+        this.points = 0
     }
 
 }

@@ -8,18 +8,18 @@ import { realHandle } from '../controllers'
 
 var chosenPuzzle = config1
 
-
 export default function Home() {
+  
   // initial instantiation of the Model comes from the chosenPuzzle
   const [model, setModel] = React.useState(new Model(chosenPuzzle))
   const [redraw, setRedraw] = React.useState(0)
-
+  
   function refresh() {
-    setRedraw(redraw+1)
+	setRedraw(redraw+1)
   }
 
   function handleReset() {
-    realHandle(model, refresh)
+	realHandle(model, refresh)
   }
 
 //   // TODO -- implement undo method 
@@ -52,18 +52,30 @@ export default function Home() {
 
 
   return (
-    <div className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <BoardGUI topmodel={model} redraw={refresh}/>
-      <h1>SYLLABLAST</h1>
-      <button className="simpleButton" onClick={() => handleReset()}>reset</button>
-{/*       
-      <button className="simpleButton" onClick={() => handleUndo()}>undo</button>
-      <button className="simpleButton" onClick={() => handleSwap()}>swap</button>
-      <button className="simpleButton" onClick={() => configOne()}>Config 1</button>
-      <button className="simpleButton" onClick={() => configTwo()}>Config 2</button>
-      <button className="simpleButton" onClick={() => config() }>Config 1</button> */}
+	<div className = "items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+		<h1 className="title"> Syllablast</h1>
 
-    </div>
+		<BoardGUI topmodel={model} redraw={refresh}/>
+
+		<label className="numMoves">{"Number of Moves: " + model.numMoves}</label>
+		<label className="numUndos">{"Undos Used: " + model.numUndos}</label>
+		<label className="pts">{"Points: " + model.points}</label>
+
+		<button className="button resetButton">Reset</button>
+		<button className="button undoButton">Undo</button>
+		<button className="button swapButton">Swap</button>
+		
+    	<button className="button c1Button">Config 1</button>
+		<button className="button c2Button">Config 2</button>
+		<button className="button c3Button">Config 3</button>
+
+		{/* <button className="simpleButton" onClick={() => handleReset()}>reset</button>
+		<button className="simpleButton" onClick={() => handleUndo()}>undo</button>
+		<button className="simpleButton" onClick={() => handleSwap()}>swap</button>
+    	<button className="simpleButton" onClick={() => configOne()}>Config 1</button>
+		<button className="simpleButton" onClick={() => configTwo()}>Config 2</button>
+		<button className="simpleButton" onClick={() => config() }>Config 1</button> */}
+	</div>
   )
 }
 

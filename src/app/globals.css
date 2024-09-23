@@ -31,7 +31,7 @@ body {
 }
 
 .square {
-  width: 100px;
+  width: 15%;
   height: 100px;
   font: bold 36px Arial;
   text-decoration: none;
@@ -44,16 +44,82 @@ body {
   border-left: 1px solid #333333;
 }
 
-.simplebutton {
-  width: 60px;
+.button {
+  width: 100px;
   height: 30px;
-  font: bold 36px Arial;
+  font: bold 15px Arial;
   text-decoration: none;
-  background-color: #EEEEEE;
+  background-color: #BBEEFF;
   color: #333333;
-  padding: 2px 6px 2px 6px;
   border-top: 1px solid #333333;
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #333333;
+}
+
+.title {
+  width: 160px;
+  height: 160px;
+  font: bold 36px Arial;
+  text-decoration: none;
+  color: #333333;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.numMoves {
+  position: absolute;
+  left: 60%;
+  top: 12%;
+} 
+.numUndos {
+  position: absolute;
+  left: 60%;
+  top: 15%;
+} 
+.pts {
+  position: absolute;
+  left: 60%;
+  top: 18%;
+} 
+
+.undoButton {
+  position: absolute;
+  left: 60%;
+  top: 21%;
+
+}
+.swapButton {
+  position: absolute;
+  left: 60%;
+  top: 25%;
+}
+
+.resetButton {
+  position: absolute;
+  left: 60%;
+  top: 29%;
+}
+.c1Button {
+  position: absolute;
+  left: 60%;
+  top: 40%;
+  background-color: #FFAAAA;
+  color: #333333;
+}
+.c2Button {
+  position: absolute;
+  left: 60%;
+  top: 44%;
+  background-color: #AAFFAA;
+  color: #333333;
+}
+.c3Button {
+  position: absolute;
+  left: 60%;
+  top: 48%;
+  background-color: #AAAAFF;
+  color: #333333;
 }
