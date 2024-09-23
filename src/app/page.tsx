@@ -61,34 +61,13 @@ export default function Home() {
 		<label className="numUndos">{"Undos Used: " + model.numUndos}</label>
 		<label className="pts">{"Points: " + model.points}</label>
 
-		<button className="button resetButton">Reset</button>
-		<button className="button undoButton">Undo</button>
-		<button className="button swapButton">Swap</button>
-		
-    	<button className="button c1Button">Config 1</button>
-		<button className="button c2Button">Config 2</button>
-		<button className="button c3Button">Config 3</button>
+		<button className="button resetButton" onClick={() => handleReset()}>Reset</button>
+		<button className="button undoButton" onClick={() => handleReset()}>Undo</button>
+		<button className="button swapButton" onClick={() => handleReset()}>Swap</button>
 
-		{/* <button className="simpleButton" onClick={() => handleReset()}>reset</button>
-		<button className="simpleButton" onClick={() => handleUndo()}>undo</button>
-		<button className="simpleButton" onClick={() => handleSwap()}>swap</button>
-    	<button className="simpleButton" onClick={() => configOne()}>Config 1</button>
-		<button className="simpleButton" onClick={() => configTwo()}>Config 2</button>
-		<button className="simpleButton" onClick={() => config() }>Config 1</button> */}
+    	<button className="button c1Button" onClick={() => handleReset()}>Config 1</button>
+		<button className="button c2Button" onClick={() => handleReset()}>Config 2</button>
+		<button className="button c3Button" onClick={() => handleReset()}>Config 3</button>
 	</div>
   )
 }
-
-//    <button className="undoButton" onClick={() => handleUndo()}>undo</button>
-//<div>
-//    </div>
-//       <button className="swapButton" onClick={() => handleSwap()}>swap</button>
-//         </div>
-//    <div className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-//            <button className="chooseConfig1Button" onClick={() => handleConfig1()}>reset</button>
-//        </div>
-//              <div className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-//              <button className="chooseConfig2Button" onClick={() => handleConfig2()}>undo</button>
-//        </div>
-//        <div>        <button className="chooseConfig3Button" onClick={() => handleConfig3() }>swap</button>
-//</div>
