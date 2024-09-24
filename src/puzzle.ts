@@ -1,4 +1,7 @@
 /** Configuration for pre-existing puzzles. */
+import { Syllable } from './model'
+
+
 export class configuration {
 	name : string;
 	words : string[][];
@@ -24,6 +27,13 @@ export class configuration {
 
 export class Puzzle {
 	config : configuration;
+	selectedSyllables : Syllable[];
+
+
+	constructor(configX : configuration){
+		this.config = configX
+		this.selectedSyllables = []
+	}
 
 }
 

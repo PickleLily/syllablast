@@ -1,3 +1,6 @@
+import { Puzzle } from './puzzle'
+
+
 export class Coordinate {
     readonly row : number;
     readonly column : number;
@@ -5,6 +8,16 @@ export class Coordinate {
     constructor(row:number, column:number) {
       this.row = row;
       this.column = column;
+    }
+}
+
+export class Syllable{
+    syllable : string;
+    inCorrectPosition : boolean;
+
+    constructor(s : string){
+        this.syllable = s
+        this.inCorrectPosition = false;
     }
 }
 
@@ -24,19 +37,24 @@ export class Board {
 }
 
 export class Model {
-    words : string[]
+    words : string[][];
+    puzzle : Puzzle;
     board : Board
     numMoves : number;
     numUndos : number;
     points : number;
 
-    constructor(puzzle) {
-        this.words = [ "in,vis,i,ble" , "im,mac,u,late", "af,fil,i,ate", "un,der,wa,ter" ]
+    constructor(puzzle : Puzzle) {
+        //TODO make the words equal to the words provided by the puzzle
+        this.puzzle = puzzle
+        this.words = []
 
         let board = new Board()
         for (let r:number = 0; r < 4; r++) {
+            this.words[r] = []
             for (let c:number = 0; c < 4; c++) {
-                board.syllables[r][c] = puzzle.initial[r][c]
+                this.words[r][c] = this.puzzle.config.words[r][c]
+                board.syllables[r][c] = this.puzzle.config.initialSetup[r][c]
             }
         }
         this.board = board
