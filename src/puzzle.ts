@@ -4,7 +4,7 @@ export class configuration {
 	words : string[][];
 	initialSetup : string[][];
 
-	constructor(inputName : string , inputWords : string[][],inputInitialSetup : string[][]){
+	constructor(inputName : string , inputWords : string[][], inputInitialSetup : string[][]){
 		this.name = inputName
 		this.words = []
 		this.initialSetup = []
@@ -19,12 +19,6 @@ export class configuration {
             }
         }
 	}
-}
-
-
-export class Puzzle {
-	config : configuration;
-
 }
 
 const config1 = 
