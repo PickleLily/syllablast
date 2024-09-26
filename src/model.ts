@@ -23,13 +23,25 @@ export class Syllable{
     }
 }
 
+class Swap{
+    syllable1 : Syllable;
+    syllable2 : Syllable;
+
+    constructor(s1 : Syllable, s2 : Syllable){
+        this.syllable1 = s1
+        this.syllable2 = s2 
+    }
+}
+
 export class Board {
     syllables : Syllable[][]
     sellectedSyllable1 : Syllable | undefined
     sellectedSyllable2 : Syllable | undefined
+    swaps : Swap[]
 
     constructor(s : string[][]) {
         this.syllables = []
+        this.swaps = []
         this.sellectedSyllable1 = undefined
         this.sellectedSyllable2 = undefined
 
@@ -41,7 +53,21 @@ export class Board {
             }
         }
     }
-}
+
+    addSwap(swap : Swap){this.swaps.push(swap)}
+
+    removeSwap(){this.swaps.pop()}
+
+    swapSyllables(){
+        if(this.sellectedSyllable1 != undefined && this.sellectedSyllable2 != undefined){
+            var s1 = this.sellectedSyllable1
+            var s2 = this.sellectedSyllable2
+        
+            this.addSwap(new Swap(s1, s2))
+        }else{
+            return
+        }
+    }}
 
 export class Model {
     words : string[][];
@@ -52,7 +78,6 @@ export class Model {
     points : number;
 
     constructor(config : configuration) {
-        //TODO make the words equal to the words provided by the puzzle
         this.config = config
         this.words = []
 
@@ -71,12 +96,19 @@ export class Model {
         this.points = 0
     }
 
-
     swapSyllables(){
         let b = this.board
-        if(b.sellectedSyllable1 != undefined && b.sellectedSyllable2 != undefined){
-            var s1 = b.sellectedSyllable1
-            var s2 = b.sellectedSyllable2
+        b.swapSyllables()
+        this.calculatePoints()
+    }
+
+    undoSwap(){
+        let b = this.board
+        let swaps = b.swaps
+        if(this.numMoves != 0){
+            b.removeSwap()
+            this.decrementMoves()
+            this.calculatePoints()
         }else{
             return
         }
@@ -90,5 +122,30 @@ export class Model {
         if(this.numMoves != 0){
             this.numMoves = this.numMoves - 1
         }
+    }
+
+    //TODO --> work this out on paper...
+    checkCorrectPosition(){
+        for(let r = 0; r < 4; r++){
+            for(let rword = 0; rword<4; rword++){
+                if(this.board.syllables[r][0].syllable == this.words[r][0]){
+                    this.board.syllables[r][0].inCorrectPosition = true
+                }else{
+                    this.board.syllables[r][0].inCorrectPosition = FontFaceSetLoadEvent
+                }
+            }
+        }
+    }
+
+    calculatePoints(){
+        var count = 0        
+        for(let row = 0; row < 4; row ++){
+            for(let col = 0; col < 4; col++){
+                if(this.board.syllables[row][col].inCorrectPosition == true){
+                    count++
+                }
+            }
+        }
+        return count;
     }
 }

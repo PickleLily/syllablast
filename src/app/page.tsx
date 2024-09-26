@@ -5,15 +5,26 @@ import { Model } from '../model'
 import { BoardGUI } from '../boundary'
 import { realHandle } from '../controllers'
 
-var chosenPuzzle = config1
+var chosenConfig = config1
 
 export default function Home() {
+
+	var chosenConfig = config1
   
   // initial instantiation of the Model comes from the chosenPuzzle
-  const [model, setModel] = React.useState(new Model(chosenPuzzle))
+  const [model, setModel] = React.useState(new Model(chosenConfig))
   const [redraw, setRedraw] = React.useState(0)
   
   function refresh() {
+	setRedraw(redraw+1)
+  }
+
+  function handleUndo(model: Model){
+	// realHandle(model, refresh)
+  }
+  
+  function handleSwap(model: Model){
+	model.incrementMoves()
 	setRedraw(redraw+1)
   }
 
@@ -27,31 +38,14 @@ export default function Home() {
 		{/* <label className="numUndos">{"Undos Used: " + model.numUndos}</label> */}
 		<label className="pts">{"Points: " + model.points}</label>
 
-		<button className="button resetButton" onClick={() => useNewConfig(model, chosenPuzzle)}>Reset</button>
+		<button className="button resetButton" onClick={() => setModel(new Model(chosenConfig))}>Reset</button>
 		<button className="button undoButton" onClick={() => handleUndo(model)}>Undo</button>
 		<button className="button swapButton" onClick={() => handleSwap(model)}>Swap</button>
 
 		<button className="button c1Button" onClick={() => setModel(new Model(config1))}>Config 1</button>
 		<button className="button c2Button" onClick={() => setModel(new Model(config2))}>Config 2</button>
 		<button className="button c3Button" onClick={() => setModel(new Model(config3))}>Config 3</button>
+		
 	</div>
   )
 }
-
-
-function useNewConfig(model: Model, c : configuration){
-	[model, setModel] = React.useState(new Model(chosenPuzzle))
-  }
-  
-  function handleUndo(model: Model){
-	realHandle(model, refresh)
-  }
-  
-  function handleSwap(model: Model){
-	realHandle(model, refresh)
-	model.swapSyllables
-	model.incrementMoves()
-	return(
-	  Home()
-	)
-  }
