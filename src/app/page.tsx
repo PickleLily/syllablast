@@ -20,7 +20,8 @@ export default function Home() {
   }
 
   function handleUndo(model: Model){
-	// realHandle(model, refresh)
+	model.decrementMoves()
+	setRedraw(redraw+1)
   }
   
   function handleSwap(model: Model){
