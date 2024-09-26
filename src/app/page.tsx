@@ -7,23 +7,6 @@ import { realHandle } from '../controllers'
 
 var chosenPuzzle = config1
 
-function useNewConfig(model: Model, c : configuration){
-  [model, setModel] = React.useState(new Model(chosenPuzzle))
-}
-
-function handleUndo(model: Model){
-  realHandle(model, refresh)
-}
-
-function handleSwap(model: Model){
-  realHandle(model, refresh)
-  model.swapSyllables
-  model.incrementMoves()
-  return(
-	Home()
-  )
-}
-
 export default function Home() {
   
   // initial instantiation of the Model comes from the chosenPuzzle
@@ -41,16 +24,34 @@ export default function Home() {
 		<BoardGUI topmodel={model} redraw={refresh}/>
 
 		<label className="numMoves">{"Number of Moves: " + model.numMoves}</label>
-		<label className="numUndos">{"Undos Used: " + model.numUndos}</label>
+		{/* <label className="numUndos">{"Undos Used: " + model.numUndos}</label> */}
 		<label className="pts">{"Points: " + model.points}</label>
 
 		<button className="button resetButton" onClick={() => useNewConfig(model, chosenPuzzle)}>Reset</button>
 		<button className="button undoButton" onClick={() => handleUndo(model)}>Undo</button>
 		<button className="button swapButton" onClick={() => handleSwap(model)}>Swap</button>
 
-		<button className="button c1Button" onClick={() => useNewConfig(model, config1)}>Config 1</button>
-		<button className="button c2Button" onClick={() => useNewConfig(model, config2)}>Config 2</button>
-		<button className="button c3Button" onClick={() => useNewConfig(model, config3)}>Config 3</button>
+		<button className="button c1Button" onClick={() => setModel(new Model(config1))}>Config 1</button>
+		<button className="button c2Button" onClick={() => setModel(new Model(config2))}>Config 2</button>
+		<button className="button c3Button" onClick={() => setModel(new Model(config3))}>Config 3</button>
 	</div>
   )
 }
+
+
+function useNewConfig(model: Model, c : configuration){
+	[model, setModel] = React.useState(new Model(chosenPuzzle))
+  }
+  
+  function handleUndo(model: Model){
+	realHandle(model, refresh)
+  }
+  
+  function handleSwap(model: Model){
+	realHandle(model, refresh)
+	model.swapSyllables
+	model.incrementMoves()
+	return(
+	  Home()
+	)
+  }
