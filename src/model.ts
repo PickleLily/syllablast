@@ -1,4 +1,4 @@
-import { Puzzle } from './puzzle'
+import { configuration, Puzzle } from './puzzle'
 
 
 export class Coordinate {
@@ -24,12 +24,12 @@ export class Syllable{
 export class Board {
     syllables : string[][]
 
-    constructor() {
+    constructor(syllables : string[][]) {
         this.syllables = []
         for (let r:number = 0; r < 4; r++) {
             this.syllables[r] = []
             for (let c:number = 0; c < 4; c++) {
-                this.syllables[r][c] = ''
+                this.syllables[r][c] = syllables[r][c]
             }
         }
     }
@@ -44,17 +44,18 @@ export class Model {
     numUndos : number;
     points : number;
 
-    constructor(puzzle : Puzzle) {
+    constructor(config : configuration) {
         //TODO make the words equal to the words provided by the puzzle
-        this.puzzle = puzzle
+        this.puzzle = new Puzzle(config)
         this.words = []
 
-        let board = new Board()
+        let board = new Board(config.initialSetup)
+        
         for (let r:number = 0; r < 4; r++) {
             this.words[r] = []
             for (let c:number = 0; c < 4; c++) {
-                this.words[r][c] = this.puzzle.config.words[r][c]
-                board.syllables[r][c] = this.puzzle.config.initialSetup[r][c]
+                this.words[r][c] = config.words[r][c]
+                //board.syllables[r][c] = config.initialSetup[r][c]
             }
         }
         this.board = board
@@ -62,5 +63,4 @@ export class Model {
         this.numUndos = 0
         this.points = 0
     }
-
 }

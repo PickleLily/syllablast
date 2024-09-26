@@ -22,33 +22,24 @@ export default function Home() {
 	realHandle(model, refresh)
   }
 
-//   // TODO -- implement undo method 
-//   function configOne(){
-//     const [model, setModel] = React.useState(new Model(config1))
-//     realHandle(model, refresh)
-//   }
+  // TODO -- implement undo method 
+  function handleconfigChange(c : configuration){
+    const [model, setModel] = React.useState(new Model(c))
+    realHandle(model, refresh)
+  }
 
-//   // TODO -- implement swap method
-//   function configTwo(){
-//     const [model, setModel] = React.useState(new Model(config2))
-//     realHandle(model, refresh)
-//   }
 
-//     // TODO -- implement undo method 
-// function configThree(){
-//   const [model, setModel] = React.useState(new Model(config3))
-//   realHandle(model, refresh)
-// }
+  function handleUndo(){
+    realHandle(model, refresh)
+  }
 
-//   // TODO -- implement undo method 
-//   function handleUndo(){
-//     realHandle(model, refresh)
-//   }
+  function handleSwap(){
+    realHandle(model, refresh)
+  }
 
-//   // TODO -- implement swap method
-//   function handleSwap(){
-//     realHandle(model, refresh)
-//   }
+	function handleClick(e:any){
+		console.log(e)
+}
 
 
   return (
@@ -62,12 +53,12 @@ export default function Home() {
 		<label className="pts">{"Points: " + model.points}</label>
 
 		<button className="button resetButton" onClick={() => handleReset()}>Reset</button>
-		<button className="button undoButton" onClick={() => handleReset()}>Undo</button>
-		<button className="button swapButton" onClick={() => handleReset()}>Swap</button>
+		<button className="button undoButton" onClick={() => handleUndo()}>Undo</button>
+		<button className="button swapButton" onClick={() => handleSwap()}>Swap</button>
 
-    	<button className="button c1Button" onClick={() => handleReset()}>Config 1</button>
-		<button className="button c2Button" onClick={() => handleReset()}>Config 2</button>
-		<button className="button c3Button" onClick={() => handleReset()}>Config 3</button>
+    	<button className="button c1Button" onClick={() => handleconfigChange(config1)}>Config 1</button>
+		<button className="button c2Button" onClick={() => handleconfigChange(config2)}>Config 2</button>
+		<button className="button c3Button" onClick={() => handleconfigChange(config3)}>Config 3</button>
 	</div>
   )
 }
