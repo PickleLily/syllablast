@@ -17,7 +17,7 @@ function handleUndo(model: Model){
 
 function handleSwap(model: Model){
   realHandle(model, refresh)
-  model.swapSyllables()
+  model.swapSyllables
   model.incrementMoves()
   return(
 	Home()
