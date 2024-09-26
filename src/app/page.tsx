@@ -25,7 +25,12 @@ export default function Home() {
   }
   
   function handleSwap(model: Model){
-	model.incrementMoves()
+	if(model.board.sellectedSyllable1 != undefined && model.board.sellectedSyllable2 != undefined){
+		model.incrementMoves()
+		model.board.sellectedSyllable1 = undefined
+		model.board.sellectedSyllable2 = undefined
+
+	}
 	setRedraw(redraw+1)
   }
 
