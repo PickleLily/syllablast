@@ -33,7 +33,7 @@ body {
 .square {
   width: 15%;
   height: 100px;
-  font: bold 36px Arial;
+  font: 36px Arial;
   text-decoration: none;
   background-color: #EEEEEE;
   color: #333333;
@@ -43,6 +43,21 @@ body {
   border-bottom: 1px solid #333333;
   border-left: 1px solid #333333;
 }
+
+/* Clicked button
+.special {
+  width: 15%;
+  height: 100px;
+  font: bold 36px Arial;
+  background-color: #ffbdbd;  
+  text-decoration: none;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #333333;
+} */
 
 .button {
   width: 100px;
@@ -56,13 +71,17 @@ body {
   border-bottom: 1px solid #333333;
   border-left: 1px solid #333333;
 }
+.button:active {
+  font: bold 15px Monoton;
+  background-color: #edffbb;
+}
 
 .title {
   width: 160px;
   height: 160px;
-  font: bold 36px Arial;
+  font: bold 36px Segoe Print;
   text-decoration: none;
-  color: #333333;
+  color: #eeff00;
   position: absolute;
   top: 10%;
   left: 50%;

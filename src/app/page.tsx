@@ -1,12 +1,28 @@
 'use client'                              // directive to clarify client-side
 import React from 'react'
-
-import { config1, config2, config3 } from '../puzzle'
+import { configuration, config1, config2, config3 } from '../configurationInfo'
 import { Model } from '../model'
 import { BoardGUI } from '../boundary'
 import { realHandle } from '../controllers'
 
 var chosenPuzzle = config1
+
+function useNewConfig(model: Model, c : configuration){
+  [model, setModel] = React.useState(new Model(chosenPuzzle))
+}
+
+function handleUndo(model: Model){
+  realHandle(model, refresh)
+}
+
+function handleSwap(model: Model){
+  realHandle(model, refresh)
+  model.swapSyllables()
+  model.incrementMoves()
+  return(
+	Home()
+  )
+}
 
 export default function Home() {
   
@@ -18,30 +34,6 @@ export default function Home() {
 	setRedraw(redraw+1)
   }
 
-  function handleReset() {
-	realHandle(model, refresh)
-  }
-
-  // TODO -- implement undo method 
-  function handleconfigChange(c : configuration){
-    const [model, setModel] = React.useState(new Model(c))
-    realHandle(model, refresh)
-  }
-
-
-  function handleUndo(){
-    realHandle(model, refresh)
-  }
-
-  function handleSwap(){
-    realHandle(model, refresh)
-  }
-
-	function handleClick(e:any){
-		console.log(e)
-}
-
-
   return (
 	<div className = "items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
 		<h1 className="title"> Syllablast</h1>
@@ -52,13 +44,13 @@ export default function Home() {
 		<label className="numUndos">{"Undos Used: " + model.numUndos}</label>
 		<label className="pts">{"Points: " + model.points}</label>
 
-		<button className="button resetButton" onClick={() => handleReset()}>Reset</button>
-		<button className="button undoButton" onClick={() => handleUndo()}>Undo</button>
-		<button className="button swapButton" onClick={() => handleSwap()}>Swap</button>
+		<button className="button resetButton" onClick={() => useNewConfig(model, chosenPuzzle)}>Reset</button>
+		<button className="button undoButton" onClick={() => handleUndo(model)}>Undo</button>
+		<button className="button swapButton" onClick={() => handleSwap(model)}>Swap</button>
 
-    	<button className="button c1Button" onClick={() => handleconfigChange(config1)}>Config 1</button>
-		<button className="button c2Button" onClick={() => handleconfigChange(config2)}>Config 2</button>
-		<button className="button c3Button" onClick={() => handleconfigChange(config3)}>Config 3</button>
+		<button className="button c1Button" onClick={() => useNewConfig(model, config1)}>Config 1</button>
+		<button className="button c2Button" onClick={() => useNewConfig(model, config2)}>Config 2</button>
+		<button className="button c3Button" onClick={() => useNewConfig(model, config3)}>Config 3</button>
 	</div>
   )
 }

@@ -13,23 +13,31 @@ export class Coordinate {
 
 export class Syllable{
     syllable : string;
+    coord : Coordinate;
     inCorrectPosition : boolean;
 
-    constructor(s : string){
+    constructor(s : string, coord : Coordinate){
         this.syllable = s
+        this.coord = coord
         this.inCorrectPosition = false;
     }
 }
 
 export class Board {
-    syllables : string[][]
+    syllables : Syllable[][]
+    sellectedSyllable1 : Syllable | undefined
+    sellectedSyllable2 : Syllable | undefined
 
     constructor(s : string[][]) {
         this.syllables = []
+        this.sellectedSyllable1 = undefined
+        this.sellectedSyllable2 = undefined
+
         for (let r:number = 0; r < 4; r++) {
             this.syllables[r] = []
+
             for (let c:number = 0; c < 4; c++) {
-                this.syllables[r][c] = s[r][c]
+                this.syllables[r][c] = new Syllable(s[r][c], new Coordinate(r,c))
             }
         }
     }
@@ -61,5 +69,26 @@ export class Model {
         this.numMoves = 0
         this.numUndos = 0
         this.points = 0
+    }
+
+
+    swapSyllables(){
+        let b = this.board
+        if(b.sellectedSyllable1 != undefined && b.sellectedSyllable2 != undefined){
+            var s1 = b.sellectedSyllable1
+            var s2 = b.sellectedSyllable2
+        }else{
+            return
+        }
+    }
+
+    incrementMoves(){
+        this.numMoves = this.numMoves + 1
+    }
+
+    decrementMoves(){
+        if(this.numMoves != 0){
+            this.numMoves = this.numMoves - 1
+        }
     }
 }
