@@ -24,21 +24,20 @@ export class Syllable{
 export class Board {
     syllables : string[][]
 
-    constructor(syllables : string[][]) {
+    constructor(s : string[][]) {
         this.syllables = []
         for (let r:number = 0; r < 4; r++) {
             this.syllables[r] = []
             for (let c:number = 0; c < 4; c++) {
-                this.syllables[r][c] = syllables[r][c]
+                this.syllables[r][c] = s[r][c]
             }
         }
     }
-
 }
 
 export class Model {
     words : string[][];
-    puzzle : Puzzle;
+    config : configuration;
     board : Board
     numMoves : number;
     numUndos : number;
@@ -46,16 +45,16 @@ export class Model {
 
     constructor(config : configuration) {
         //TODO make the words equal to the words provided by the puzzle
-        this.puzzle = new Puzzle(config)
+        this.config = config
         this.words = []
 
         let board = new Board(config.initialSetup)
-        
+
         for (let r:number = 0; r < 4; r++) {
             this.words[r] = []
             for (let c:number = 0; c < 4; c++) {
                 this.words[r][c] = config.words[r][c]
-                //board.syllables[r][c] = config.initialSetup[r][c]
+                board.syllables[r][c] = config.initialSetup[r][c]
             }
         }
         this.board = board

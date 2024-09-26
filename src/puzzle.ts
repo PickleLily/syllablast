@@ -1,6 +1,4 @@
 /** Configuration for pre-existing puzzles. */
-import { Syllable } from './model'
-
 
 export class configuration {
 	name : string;
@@ -24,64 +22,43 @@ export class configuration {
 	}
 }
 
+var c1Words = [[ "in,vis,i,ble"  ],
+[ "im,mac,u,late" ],
+[ "af,fil,i,ate"  ],
+[ "un,der,wa,ter" ]]
 
-export class Puzzle {
-	config : configuration;
-	selectedSyllables : Syllable[];
+var c1Initial = [['ter','ate','ble','der'], 
+['fil','in','im ','i'], 
+['i','late','mac','un'], 
+['u','vis','af','wa']]
+const config1 = new configuration("#1", c1Words, c1Initial)
 
 
-	constructor(configX : configuration){
-		this.config = configX
-		this.selectedSyllables = []
-	}
+var c2Words = [[ "ex,am,in,ing"],
+[ "re,in,force,ment" ],
+[ "in,for,ma,tive"],
+[ "ma,te,ri,al" ]]
 
-}
+var c2Initial = [['force','ment','al','in'],
+['for','ma','am','in'],
+['tive','ma','ing','in'],
+['ri','re','te','ex']]
 
-const config1 = 
-{
-  "name": "#1",
-  "words" : [ [ "in,vis,i,ble"  ], 
-			  [ "im,mac,u,late" ],
-			  [ "af,fil,i,ate"  ],
-			  [ "un,der,wa,ter" ]
-			],
-  "initial": [ ['ter','ate','ble','der'],
-			   ['fil','in','im ','i'],
-			   ['i','late','mac','un'],
-			   ['u','vis','af','wa']
-	]
-}
-  
-const config2 = 
-{
-  "name": "#2",
-  "words" : [ [ "ex,am,in,ing"],
-			  [ "re,in,force,ment" ],
-			  [ "in,for,ma,tive"],
-			  [ "ma,te,ri,al" ]
-			],
-  "initial": [ ['force','ment','al','in'],
-			   ['for','ma','am','in'],
-			   ['tive','ma','ing','in'],
-			   ['ri','re','te','ex']
-  
-	]
-}
+const config2 = new configuration("#2", c2Words, c2Initial)
 
-const config3 = 
-{
-  "name": "#3",
-  "words" : [ [ "me,chan,i,cal"],
-			  [ "cal,cu,lat,ing"],
-			  ["im,me,di,ate"],
-			  ["di,ag,on,al" ]
-			],
-  "initial": [ ['di','im','me','di'],
-			   ['cu','cal','cal','me'],
-			   ['lat','nal','ing','i'],
-			   ['o','ate','ag','chan']
-	]
-}
+
+var c3Words = [[ "me,chan,i,cal"],
+[ "cal,cu,lat,ing"],
+["im,me,di,ate"],
+["di,ag,on,al" ]]
+
+var c3Initial = [['di','im','me','di'],
+['cu','cal','cal','me'],
+['lat','nal','ing','i'],
+['o','ate','ag','chan']]
+const config3 = new configuration("#3", c3Words, c3Initial)
+
+
 
 export { config1, config2, config3 }
 
