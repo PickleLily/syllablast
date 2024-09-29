@@ -18,6 +18,7 @@ export default function Home() {
 
   function handleUndo(model: Model){
 	model.decrementMoves()
+	model.undoSwap()
 	setRedraw(redraw+1)
   }
   
@@ -25,10 +26,10 @@ export default function Home() {
 	if(model.board.sellectedSyllable1 != undefined && model.board.sellectedSyllable2 != undefined){
 		model.incrementMoves()
 		model.swapSyllables(model.board.sellectedSyllable1, model.board.sellectedSyllable2)
+		setRedraw(redraw+1)
 		model.board.sellectedSyllable1 = undefined
 		model.board.sellectedSyllable2 = undefined
 	}
-	setRedraw(redraw+1)
   }
 
 function changeConfig(configuration : configuration){
