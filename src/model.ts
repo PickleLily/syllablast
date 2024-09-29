@@ -77,8 +77,8 @@ export class Board {
             var s1coord = inputSyllable1.coord
             var s2coord = inputSyllable2.coord
 
-            this.syllables[s1coord.getRow()][s1coord.getCol()].syllable == s2
-            this.syllables[s2coord.getRow()][s2coord.getCol()].syllable == s1
+            this.syllables[s1coord.getRow()][s1coord.getCol()].syllable = s2
+            this.syllables[s2coord.getRow()][s2coord.getCol()].syllable = s1
         
             this.addSwap(new Swap(this.sellectedSyllable1, this.sellectedSyllable2))
         }
@@ -103,10 +103,7 @@ export class Model {
             this.words[r] = []
             for (let c:number = 0; c < 4; c++) {
                 this.words[r][c] = config.words[r][c]
-                this.board.syllables[r][c] = new Syllable(config.initialSetup[r][c], new Coordinate(r,c))
-                //this.board.syllables[r][c] = config.initialSetup[r][c]
-                //this.board.syllables[r][c].coord = new Coordinate(r,c) 
-                
+                this.board.syllables[r][c] = new Syllable(config.initialSetup[r][c], new Coordinate(r,c))                
             }
         }
         this.numMoves = 0
