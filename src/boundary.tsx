@@ -8,7 +8,7 @@ export function BoardGUI({topmodel, redraw}) {
 
     function handleClick(r:number, c:number) {
       console.log("clicked on: ", r, c, redraw)
-      topmodel.board.syllables[r][c] = "x" + topmodel.board.syllables[r][c] 
+      topmodel.board.syllables[r][c].syllable = "x" + topmodel.board.syllables[r][c].syllable
 
       if(topmodel.board.sellectedSyllable1 == undefined){
         topmodel.board.sellectedSyllable1 = topmodel.board.syllables[r][c]
@@ -26,7 +26,6 @@ export function BoardGUI({topmodel, redraw}) {
         topmodel.board.sellectedSyllable2 = topmodel.board.syllables[r][c]
         mostRecentlyClicked = 2
       }
-
       redraw(redraw + 1)  // call the redraw
     }
     
