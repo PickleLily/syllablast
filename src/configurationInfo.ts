@@ -58,7 +58,4 @@ var c3Initial = [['di','im','me','di'],
 ['o','ate','ag','chan']]
 const config3 = new configuration("#3", c3Words, c3Initial)
 
-
-
 export { config1, config2, config3 }
-

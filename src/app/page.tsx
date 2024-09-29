@@ -1,9 +1,8 @@
 'use client'                              // directive to clarify client-side
 import React from 'react'
-import { configuration, config1, config2, config3 } from '../configurationInfo'
+import { config1, config2, config3 } from '../configurationInfo'
 import { Model } from '../model'
 import { BoardGUI } from '../boundary'
-import { realHandle } from '../controllers'
 
 var chosenConfig = config1
 
@@ -27,9 +26,9 @@ export default function Home() {
   function handleSwap(model: Model){
 	if(model.board.sellectedSyllable1 != undefined && model.board.sellectedSyllable2 != undefined){
 		model.incrementMoves()
+		model.swapSyllables(model.board.sellectedSyllable1, model.board.sellectedSyllable2)
 		model.board.sellectedSyllable1 = undefined
 		model.board.sellectedSyllable2 = undefined
-
 	}
 	setRedraw(redraw+1)
   }
@@ -41,7 +40,6 @@ export default function Home() {
 		<BoardGUI topmodel={model} redraw={refresh}/>
 
 		<label className="numMoves">{"Number of Moves: " + model.numMoves}</label>
-		{/* <label className="numUndos">{"Undos Used: " + model.numUndos}</label> */}
 		<label className="pts">{"Points: " + model.points}</label>
 
 		<button className="button resetButton" onClick={() => setModel(new Model(chosenConfig))}>Reset</button>

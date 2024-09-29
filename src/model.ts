@@ -1,4 +1,4 @@
-import { configuration, Puzzle } from './puzzle'
+import { configuration} from './configurationInfo'
 
 
 export class Coordinate {
@@ -8,6 +8,13 @@ export class Coordinate {
     constructor(row:number, column:number) {
       this.row = row;
       this.column = column;
+    }
+
+    getRow(){
+        return this.row
+    }
+    getCol(){
+        return this.column
     }
 }
 
@@ -20,6 +27,10 @@ export class Syllable{
         this.syllable = s
         this.coord = coord
         this.inCorrectPosition = false;
+    }
+
+    addCoord(coord : Coordinate){
+        this.coord = coord
     }
 }
 
@@ -47,7 +58,6 @@ export class Board {
 
         for (let r:number = 0; r < 4; r++) {
             this.syllables[r] = []
-
             for (let c:number = 0; c < 4; c++) {
                 this.syllables[r][c] = new Syllable(s[r][c], new Coordinate(r,c))
             }
@@ -58,16 +68,25 @@ export class Board {
 
     removeSwap(){this.swaps.pop()}
 
-    swapSyllables(){
-        if(this.sellectedSyllable1 != undefined && this.sellectedSyllable2 != undefined){
-            var s1 = this.sellectedSyllable1
-            var s2 = this.sellectedSyllable2
+    swapSyllables(inputSyllable1 : Syllable, inputSyllable2 : Syllable){
         
-            this.addSwap(new Swap(s1, s2))
-        }else{
-            return
+        console.log(this.sellectedSyllable1)
+        console.log(this.sellectedSyllable2)
+
+        if(this.sellectedSyllable1 != undefined && this.sellectedSyllable2 != undefined){
+            var s1 = inputSyllable1.syllable
+            var s2 = inputSyllable2.syllable
+
+            var s1coord = inputSyllable1.coord
+            var s2coord = inputSyllable2.coord
+
+            this.syllables[s1coord.getRow()][s1coord.getCol()].syllable == s2
+            this.syllables[s2coord.getRow()][s2coord.getCol()].syllable == s1
+        
+            this.addSwap(new Swap(this.sellectedSyllable1, this.sellectedSyllable2))
         }
-    }}
+    }
+}
 
 export class Model {
     words : string[][];
@@ -81,25 +100,30 @@ export class Model {
         this.config = config
         this.words = []
 
-        let board = new Board(config.initialSetup)
+        this.board = new Board(config.initialSetup)
 
         for (let r:number = 0; r < 4; r++) {
             this.words[r] = []
             for (let c:number = 0; c < 4; c++) {
                 this.words[r][c] = config.words[r][c]
-                board.syllables[r][c] = config.initialSetup[r][c]
+                this.board.syllables[r][c] = new Syllable(config.initialSetup[r][c], new Coordinate(r,c))
+                //this.board.syllables[r][c] = config.initialSetup[r][c]
+                //this.board.syllables[r][c].coord = new Coordinate(r,c) 
+                
             }
         }
-        this.board = board
         this.numMoves = 0
         this.numUndos = 0
         this.points = 0
     }
 
-    swapSyllables(){
+    
+    swapSyllables(s1 : Syllable, s2 : Syllable){
         let b = this.board
-        b.swapSyllables()
-        this.calculatePoints()
+        if (this.board.sellectedSyllable1 != undefined && this.board.sellectedSyllable2 != undefined){
+            b.swapSyllables(this.board.sellectedSyllable1, this.board.sellectedSyllable2)
+        }
+            this.calculatePoints()
     }
 
     undoSwap(){
@@ -126,26 +150,19 @@ export class Model {
 
     //TODO --> work this out on paper...
     checkCorrectPosition(){
-        for(let r = 0; r < 4; r++){
-            for(let rword = 0; rword<4; rword++){
-                if(this.board.syllables[r][0].syllable == this.words[r][0]){
-                    this.board.syllables[r][0].inCorrectPosition = true
-                }else{
-                    this.board.syllables[r][0].inCorrectPosition = FontFaceSetLoadEvent
-                }
-            }
-        }
+        // for(let r = 0; r < 4; r++){
+        //     for(let rword = 0; rword<4; rword++){
+        //         if(this.board.syllables[r][0].syllable == this.words[r][0]){
+        //             this.board.syllables[r][0].inCorrectPosition = true
+        //         }else{
+        //             this.board.syllables[r][0].inCorrectPosition = FontFaceSetLoadEvent
+        //         }
+        //     }
+        // }
+        return true
     }
 
     calculatePoints(){
-        var count = 0        
-        for(let row = 0; row < 4; row ++){
-            for(let col = 0; col < 4; col++){
-                if(this.board.syllables[row][col].inCorrectPosition == true){
-                    count++
-                }
-            }
-        }
-        return count;
+        this.points = this.points + 1
     }
 }
