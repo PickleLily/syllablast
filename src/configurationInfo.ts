@@ -29,7 +29,7 @@ var c1Words = [["in", "vis", "i", "ble"],
 			["un","der","wa","ter"]]
 
 var c1Initial = [['ter','ate','ble','der'], 
-['fil','in','im ','i'], 
+['fil','in','im','i'], 
 ['i','late','mac','un'], 
 ['u','vis','af','wa']]
 const config1 = new configuration("#1", c1Words, c1Initial)
@@ -52,7 +52,7 @@ const config2 = new configuration("#2", c2Words, c2Initial)
 var c3Words = [["me", "chan", "i", "cal"],
 			["cal", "cu", "lat", "ing"],
 			["im","me","di","ate" ],
-			["di","ag","on","al"]]
+			["di","ag","o","nal"]]
 
 var c3Initial = [['di','im','me','di'],
 ['cu','cal','cal','me'],

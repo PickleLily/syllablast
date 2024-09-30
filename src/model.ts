@@ -135,8 +135,9 @@ export class Model {
     undoSwap(){
         let b = this.board
         let swaps = b.swaps
-        if(this.numMoves != 0){
+        if(swaps.length > 0){
             b.removeSwap()
+            console.log("trying to undo")
             this.decrementMoves()
             this.checkCorrectPosition()
         }else{
@@ -159,17 +160,17 @@ export class Model {
         }else{
             let b = this.board.syllables
             for(let boardRow = 0; boardRow < 4; boardRow ++){
+                
                 for(let solutionsRow = 0; solutionsRow < 4; solutionsRow ++){
                     if(b[boardRow][0].syllable === this.words[solutionsRow][0]){
-                        console.log("syllables are equal")
 
                         for(let column = 0; column < 4; column ++){
                             if(b[boardRow][column].syllable === this.words[solutionsRow][column]){
                                 b[boardRow][column].setInCorrectPosition(true)
+                            }else{
+                                column = 5
                             }
                         }
-                    }else{
-                        console.log("syllables are NOT equal: " + b[boardRow][0].syllable + " +  "  + this.words[solutionsRow][0])
                     }
                 }
             }

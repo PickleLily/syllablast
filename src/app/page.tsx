@@ -19,7 +19,11 @@ export default function Home() {
   function handleUndo(model: Model){
 	model.decrementMoves()
 	model.undoSwap()
+	model.checkCorrectPosition()
+	model.calculatePoints()
 	setRedraw(redraw+1)
+	model.board.sellectedSyllable1 = undefined
+	model.board.sellectedSyllable2 = undefined
   }
   
   function handleSwap(model: Model){
