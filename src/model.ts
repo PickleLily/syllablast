@@ -81,6 +81,7 @@ export class Board {
             this.syllables[s2coord.getRow()][s2coord.getCol()].syllable = s1
         
             this.addSwap(new Swap(this.sellectedSyllable1, this.sellectedSyllable2))
+            
         }
     }
 }
@@ -116,7 +117,7 @@ export class Model {
         if (this.board.sellectedSyllable1 != undefined && this.board.sellectedSyllable2 != undefined){
             this.board.swapSyllables(this.board.sellectedSyllable1, this.board.sellectedSyllable2)
         }
-            this.calculatePoints()
+            this.checkCorrectPosition()
     }
 
     undoSwap(){
@@ -125,7 +126,7 @@ export class Model {
         if(this.numMoves != 0){
             b.removeSwap()
             this.decrementMoves()
-            this.calculatePoints()
+            this.checkCorrectPosition()
         }else{
             return
         }
@@ -167,6 +168,7 @@ export class Model {
                 }
             }
         }
+        this.calculatePoints()
     }
 
     calculatePoints(){
