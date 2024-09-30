@@ -26,6 +26,8 @@ export default function Home() {
 	if(model.board.sellectedSyllable1 != undefined && model.board.sellectedSyllable2 != undefined){
 		model.incrementMoves()
 		model.swapSyllables(model.board.sellectedSyllable1, model.board.sellectedSyllable2)
+		model.checkCorrectPosition()
+		model.calculatePoints()
 		setRedraw(redraw+1)
 		model.board.sellectedSyllable1 = undefined
 		model.board.sellectedSyllable2 = undefined

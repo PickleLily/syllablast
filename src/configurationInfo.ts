@@ -22,10 +22,11 @@ export class configuration {
 	}
 }
 
-var c1Words = [[ "in,vis,i,ble"  ],
-[ "im,mac,u,late" ],
-[ "af,fil,i,ate"  ],
-[ "un,der,wa,ter" ]]
+
+var c1Words = [["in", "vis", "i", "ble"],
+			["im", "mac", "u", "late"],
+			["af","fil","i","ate" ],
+			["un","der","wa","ter"]]
 
 var c1Initial = [['ter','ate','ble','der'], 
 ['fil','in','im ','i'], 
@@ -34,10 +35,11 @@ var c1Initial = [['ter','ate','ble','der'],
 const config1 = new configuration("#1", c1Words, c1Initial)
 
 
-var c2Words = [[ "ex,am,in,ing"],
-[ "re,in,force,ment" ],
-[ "in,for,ma,tive"],
-[ "ma,te,ri,al" ]]
+
+var c2Words = [["ex", "am", "in", "ing"],
+			["re", "in", "force", "ment"],
+			["in","for","ma","tive" ],
+			["ma","te","ri","al"]]
 
 var c2Initial = [['force','ment','al','in'],
 ['for','ma','am','in'],
@@ -47,10 +49,10 @@ var c2Initial = [['force','ment','al','in'],
 const config2 = new configuration("#2", c2Words, c2Initial)
 
 
-var c3Words = [[ "me,chan,i,cal"],
-[ "cal,cu,lat,ing"],
-["im,me,di,ate"],
-["di,ag,on,al" ]]
+var c3Words = [["me", "chan", "i", "cal"],
+			["cal", "cu", "lat", "ing"],
+			["im","me","di","ate" ],
+			["di","ag","on","al"]]
 
 var c3Initial = [['di','im','me','di'],
 ['cu','cal','cal','me'],

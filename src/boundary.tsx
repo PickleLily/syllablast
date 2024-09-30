@@ -1,11 +1,7 @@
 'use client'                              // directive to clarify client-side
 import React from 'react'
 import {useState} from 'react'
-import { Model } from './model'
-
-// var mostRecentlyClicked = -1
-// var disabled = useState
-
+import { Syllable} from './model'
 
 export function BoardGUI({topmodel, redraw}) {
   const [disabled, setDisabled] = useState(false);  // control for disabled state if needed
@@ -36,16 +32,10 @@ export function BoardGUI({topmodel, redraw}) {
     return (
       <>
         <div>
-          {topmodel.board.syllables.map((row, rowIndex) => (
-            <div key={rowIndex}>
-              {row.map((syllable, colIndex) => (
-                <button
-                  className="square"
-                  disabled={false}  // manage disable logic here if needed
-                  onClick={() => handleClick(rowIndex, colIndex)}
-                >
-                  {syllable.syllable}
-                </button>
+          {topmodel.board.syllables.map((r, row: number) => (
+            <div key={row}>
+              {r.map((syllable : Syllable, col : number) => (
+                <button className="square" disabled={syllable.inCorrectPosition} onClick={() => handleClick(row, col)}> {syllable.syllable} </button>
               ))}
             </div>
           ))}

@@ -42,26 +42,26 @@ body {
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #333333;
+  transition: background-color .15s ease;
 }
 
-.square:active {
-  background-color: #edffbb;
+.square:active{
+  text-decoration: rgb(87, 0, 128) wavy underline;
+  font: 36px bold Arial;
 }
 
-/* Clicked button
-.special {
-  width: 15%;
-  height: 100px;
-  font: bold 36px Arial;
-  background-color: #ffbdbd;  
-  text-decoration: none;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #333333;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #333333;
-} */
+.square:hover{
+  background-color: #fffeb6;
+  opacity: 0.9; /* Lower opacity to make it look inactive */
+
+}
+
+.square:disabled{
+  color: #666666;
+  background-color: #AAFFAA;
+  cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+
+}
 
 .button {
   width: 100px;
@@ -74,9 +74,12 @@ body {
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #333333;
+  transition: background-color 0.3s ease;
 }
 .button:active {
   font: bold 15px Monoton;
+}
+.button:hover {
   background-color: #edffbb;
 }
 
@@ -84,7 +87,7 @@ body {
   width: 160px;
   height: 160px;
   font: bold 36px Segoe Print;
-  text-decoration: none;
+  text-decoration: #eeff00 wavy underline;
   color: #eeff00;
   position: absolute;
   top: 10%;
@@ -109,38 +112,38 @@ body {
 .undoButton {
   position: absolute;
   left: 60%;
-  top: 21%;
+  top: 200px;
 
 }
 .swapButton {
   position: absolute;
   left: 60%;
-  top: 25%;
+  top: 235px;
 }
 
 .resetButton {
   position: absolute;
   left: 60%;
-  top: 29%;
+  top: 270px;
 }
 .c1Button {
   position: absolute;
   left: 60%;
-  top: 40%;
+  top: 335px;
   background-color: #FFAAAA;
   color: #333333;
 }
 .c2Button {
   position: absolute;
   left: 60%;
-  top: 44%;
+  top: 370px;  
   background-color: #AAFFAA;
   color: #333333;
 }
 .c3Button {
   position: absolute;
   left: 60%;
-  top: 48%;
+  top: 405px;
   background-color: #AAAAFF;
   color: #333333;
 }

@@ -1,3 +1,4 @@
+import { V } from 'vitest/dist/chunks/reporters.WnPwkmgA.js';
 import { configuration} from './configurationInfo'
 
 
@@ -31,6 +32,10 @@ export class Syllable{
 
     addCoord(coord : Coordinate){
         this.coord = coord
+    }
+
+    setInCorrectPosition(value : boolean){
+        this.inCorrectPosition = value
     }
 }
 
@@ -66,7 +71,16 @@ export class Board {
 
     addSwap(swap : Swap){this.swaps.push(swap)}
 
-    removeSwap(){this.swaps.pop()}
+    removeSwap(){
+        if(this.swaps.length > 0){
+            var swap = this.swaps.pop()
+            if(swap != undefined){
+                var s1 = swap.syllable1
+                var s2 = swap.syllable2
+                this.swapSyllables(s1,s2)   
+            }
+        }
+    }
 
     swapSyllables(inputSyllable1 : Syllable, inputSyllable2 : Syllable){
 
@@ -79,9 +93,6 @@ export class Board {
 
             this.syllables[s1coord.getRow()][s1coord.getCol()].syllable = s2
             this.syllables[s2coord.getRow()][s2coord.getCol()].syllable = s1
-        
-            this.addSwap(new Swap(this.sellectedSyllable1, this.sellectedSyllable2))
-            
         }
     }
 }
@@ -116,6 +127,7 @@ export class Model {
     swapSyllables(s1 : Syllable, s2 : Syllable){
         if (this.board.sellectedSyllable1 != undefined && this.board.sellectedSyllable2 != undefined){
             this.board.swapSyllables(this.board.sellectedSyllable1, this.board.sellectedSyllable2)
+            this.board.addSwap(new Swap(this.board.sellectedSyllable1, this.board.sellectedSyllable2))
         }
             this.checkCorrectPosition()
     }
@@ -144,31 +156,25 @@ export class Model {
 
     checkCorrectPosition(){
         if(this.board.sellectedSyllable1 == undefined || this.board.sellectedSyllable2 == undefined){
-            return
         }else{
-            var row1 = this.board.sellectedSyllable1.coord.getRow()
-            var row2 = this.board.sellectedSyllable2.coord.getRow()
-            for(let r = 0; r < 4; r++){
-                for(let c = 1; c < 4; c++){
-                    if(this.words[r][c] == this.board.syllables[row1][c].syllable){
-                        this.board.syllables[r][c].inCorrectPosition = true
-                    }else{
-                        return
-                    }
-                }
-            }
+            let b = this.board.syllables
+            for(let boardRow = 0; boardRow < 4; boardRow ++){
+                for(let solutionsRow = 0; solutionsRow < 4; solutionsRow ++){
+                    if(b[boardRow][0].syllable === this.words[solutionsRow][0]){
+                        console.log("syllables are equal")
 
-            for(let r = 0; r < 4; r++){
-                for(let c = 1; c < 4; c++){
-                    if(this.words[r][c] == this.board.syllables[row2][c].syllable){
-                        this.board.syllables[r][c].inCorrectPosition = true
+                        for(let column = 0; column < 4; column ++){
+                            if(b[boardRow][column].syllable === this.words[solutionsRow][column]){
+                                b[boardRow][column].setInCorrectPosition(true)
+                            }
+                        }
                     }else{
-                        return
+                        console.log("syllables are NOT equal: " + b[boardRow][0].syllable + " +  "  + this.words[solutionsRow][0])
                     }
                 }
             }
         }
-        this.calculatePoints()
+        return this.calculatePoints()
     }
 
     calculatePoints(){
@@ -180,6 +186,7 @@ export class Model {
                 }
             }
         }
+        this.points = count
+        return this.points
     }
-
 }
