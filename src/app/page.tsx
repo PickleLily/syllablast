@@ -26,7 +26,7 @@ export default function Home() {
   function handleSwap(model: Model){
 	if(model.board.sellectedSyllable1 != undefined && model.board.sellectedSyllable2 != undefined){
 		model.incrementMoves()
-		model.swapSyllables(model.board.sellectedSyllable1, model.board.sellectedSyllable2)
+		model.swapSyllables()
 		model.checkCorrectPosition()
 		model.calculatePoints()
 		setRedraw(redraw+1)

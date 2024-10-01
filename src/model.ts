@@ -71,21 +71,21 @@ export class Board {
 
     addSwap(swap : Swap){this.swaps.push(swap)}
 
-    undoSwapSyllables(s1 : Syllable, s2 : Syllable,){
-        if(s1 != undefined && s2 != undefined){
-            this.syllables[s1.coord.getRow()][s1.coord.getCol()].syllable = s2.syllable
-            this.syllables[s2.coord.getRow()][s2.coord.getCol()].syllable = s1.syllable
-        }
-    }
 
     removeSwap(){
-        if(this.swaps.length > 0){
-            var swap = this.swaps.pop()
-            if(swap != undefined){
-                var s1 = swap.syllable1
-                var s2 = swap.syllable2
-                this.undoSwapSyllables(s1,s2)   
-            }
+        var swap = this.swaps.pop()
+        if(swap != undefined){        
+            var saveS1 = swap.syllable1.syllable
+            var saveS2 = swap.syllable2.syllable
+    
+            let syllable1 = this.syllables[swap.syllable1.coord.getRow()][swap.syllable1.coord.getCol()].syllable
+            let syllable2 = this.syllables[swap.syllable2.coord.getRow()][swap.syllable2.coord.getCol()].syllable
+               
+            console.log("pre-Swap s1: " + syllable1 + "   s2: " + syllable2)
+    
+            this.syllables[swap.syllable1.coord.getRow()][swap.syllable1.coord.getCol()].syllable = saveS2
+            this.syllables[swap.syllable2.coord.getRow()][swap.syllable2.coord.getCol()].syllable = saveS1
+           console.log("post-Swap s1: " + syllable1 + "   s2: " + syllable2)
         }
     }
 
@@ -133,25 +133,19 @@ export class Model {
 
     swapSyllables(){
         if (this.board.sellectedSyllable1 != undefined && this.board.sellectedSyllable2 != undefined){
-            this.board.swapSyllables(this.board.sellectedSyllable1, this.board.sellectedSyllable2)
+            this.board.swapSyllables()
             this.board.addSwap(new Swap(this.board.sellectedSyllable1, this.board.sellectedSyllable2))
         }
             this.checkCorrectPosition()
     }
 
-    
 
     undoSwap(){
         if(this.points != 16){
-            let b = this.board
-            let swaps = b.swaps
-            if(swaps.length > 0){
-                b.removeSwap()
-                console.log("trying to undo")
+            if(this.board.swaps.length > 0){
+                this.board.removeSwap()
                 this.decrementMoves()
                 this.checkCorrectPosition()
-            }else{
-                return
             }
         }
     }
@@ -168,8 +162,13 @@ export class Model {
 
     checkCorrectPosition(){
         let b = this.board.syllables
+        for(let r = 0; r < 4; r++){
+            for(let c = 0; c < 4; c++){
+                this.board.syllables[r][c].setInCorrectPosition(false)
+            }
+        }
+
         for(let boardRow = 0; boardRow < 4; boardRow ++){
-            
             for(let solutionsRow = 0; solutionsRow < 4; solutionsRow ++){
                 if(b[boardRow][0].syllable === this.words[solutionsRow][0]){
 

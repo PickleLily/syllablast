@@ -28,9 +28,6 @@ test('Model', () => {
 	// use 'toStrictEqual' when object structure is to be compared, and not just ==
 	expect(m.board.sellectedSyllable1).toBe(undefined)
 	expect(m.board.sellectedSyllable2).toBe(undefined)
-
-	//TODO -- select them and then check that they are NOT undefined...
-
 })
 
 test('incorrectPosition', () => {
