@@ -6,6 +6,8 @@ test('Coordinate', () => {
 	let c1 = new Coordinate(3, 4)
 	expect(c1.row).toBe(3)
 	expect(c1.column).toBe(4)
+	expect(c1.getRow()).toBe(3)
+	expect(c1.getCol()).toBe(4)
 	})
 
 test('SyllableInfo', () => {

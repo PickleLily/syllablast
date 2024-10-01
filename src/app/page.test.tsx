@@ -46,10 +46,19 @@ test("nothing sellected"), () => {
 
     fireEvent.click(getByText('di'))
 
-    fireEvent.click(getByText('ag'))
+    fireEvent.click(getByText('al'))
 
     fireEvent.click(getByText('Swap'))
 
-    expect(getByText('Number of Points : 0')).toBeTruthy()
+    expect(getByText('Number of Points : 1')).toBeTruthy()
+    expect(model.points).toBe(1)
+    expect(model.calculatePoints()).toBe(1)
+
+    expect(model.incrementMoves()).toBeCalled()
+    expect(model.swapSyllables()).toBeCalled()
+    expect(model.checkCorrectPosition()).toBeCalled()
+    expect(model.calculatePoints()).toBeCalled()
+
+
 
 }

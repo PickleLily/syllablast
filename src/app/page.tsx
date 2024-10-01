@@ -36,14 +36,13 @@ export default function Home() {
 		model.board.sellectedSyllable1 = undefined
 		model.board.sellectedSyllable2 = undefined
 	}
+	
   }
 
 function changeConfig(configuration : configuration){
 	chosenConfig = configuration
 	setModel(new Model(configuration))
 }
-
-
   return (
 	<div className = "items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
 		<h1 className="title"> Syllablast</h1>
@@ -60,7 +59,6 @@ function changeConfig(configuration : configuration){
 		<button className="button c1Button" onClick={() => changeConfig(config1)}>Config 1</button>
 		<button className="button c2Button" onClick={() => changeConfig(config2)}>Config 2</button>
 		<button className="button c3Button" onClick={() => changeConfig(config3)}>Config 3</button>
-		
 	</div>
   )
 }
