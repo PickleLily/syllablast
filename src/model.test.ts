@@ -137,40 +137,47 @@ test('increment&decrementMoves',() =>{
 
 })
 
-// //151 - 163
-// test('undoSwap', () => {
-// 	var c4Words = [["in", "vis", "i", "ble"],
-// 	["im", "mac", "u", "late"],
-// 	["af","fil","i","ate" ],
-// 	["un","der","wa","ter"]]
+//151 - 163
+test('undoSwap', () => {
+	var c4Words = [["in", "vis", "i", "ble"],
+	["im", "mac", "u", "late"],
+	["af","fil","i","ate" ],
+	["un","der","wa","ter"]]
 
-// var c4Initial = [["in", "vis", "i", "ble"],
-// 	["im", "mac", "u", "late"],
-// 	["af","fil","i","ate" ],
-// 	["un","der","wa","ter"]]
+var c4Initial = [["in", "vis", "i", "ble"],
+	["im", "mac", "u", "late"],
+	["af","fil","i","ate" ],
+	["un","der","wa","ter"]]
 
-// 	let m = new Model(new configuration("#1", c4Words, c4Initial))
+	let m = new Model(new configuration("#1", c4Words, c4Initial))
 	
-// 	m.checkCorrectPosition()
-// 	expect(m.calculatePoints()).toBe(16)
+	m.checkCorrectPosition()
+	expect(m.calculatePoints()).toBe(16)
 
 
-// 	let m1 = new Model(config1)
-// 	expect(m.board.swaps.length).toBe(0)
-// 	//TODO -- fix
-// 	let s1 = new Syllable("hell", new Coordinate(0,1))
-// 	let s2 = new Syllable("o", new Coordinate(0,0))
-// 	let swap1 = new Swap(s1, s2)
+	let m1 = new Model(config1)
+	expect(m.board.swaps.length).toBe(0)
+	//TODO -- fix
+	let s1 = m.board.syllables[0][0]
+	let s2 = m.board.syllables[0][0]
+	m.board.sellectedSyllable1 = s1
+	m.board.sellectedSyllable2 = s2
+	m.swapSyllables()
+	expect(m.board.swaps.length).toBe(1)
+	
 
-// 	m.swapSyllables(s1, s2)
-
-// 	expect(m.board.swaps.length).toBe(1)
-// })
+	expect(m.calculatePoints()).toBe(16)
+	expect(m.undoSwap()).toBeFalsy()
+})
 
 //143 - 148
 test('model.swapSyllables()', () => {
 	let m = new Model(config1)
+	expect(m.board.swaps.length).toBe(0)
 	m.board.sellectedSyllable1 = new Syllable("hell", new Coordinate(0,1))
 	m.board.sellectedSyllable2 = new Syllable("o", new Coordinate(0,0))
 	m.swapSyllables()
+	expect(m.board.swaps.length).toBe(1)
+	m.undoSwap()
+	expect(m.board.swaps.length).toBe(0)
 })

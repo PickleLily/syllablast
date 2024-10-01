@@ -1,12 +1,12 @@
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
- 
+import react from '@vitejs/plugin-react';
+import { coverageConfigDefaults, defineConfig } from 'vitest/config';
+
 export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    coverage: {
-      exclude: ['./.config.', './next-env.d.ts', './src/app/layout.tsx', './.next/**', '**/*.mjs', '**/*.mjs/**'],
-    },
-  },
+    plugins: [react()],
+    test: {
+        environment: 'jsdom',
+        coverage: {
+            exclude: ['*.config.*', '*/layout.tsx', ...coverageConfigDefaults.exclude]
+        }
+    }
 })

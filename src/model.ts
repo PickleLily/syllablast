@@ -148,6 +148,7 @@ export class Model {
                 this.checkCorrectPosition()
             }
         }
+        return false
     }
 
     incrementMoves(){
