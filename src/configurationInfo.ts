@@ -54,9 +54,9 @@ var c3Words = [["me", "chan", "i", "cal"],
 			["im","me","di","ate" ],
 			["di","ag","o","nal"]]
 
-var c3Initial = [['di','im','me','di'],
+var c3Initial = [['al','di','me','di'],
 ['cu','cal','cal','me'],
-['lat','nal','ing','i'],
+['lat','im','ing','i'],
 ['o','ate','ag','chan']]
 const config3 = new configuration("#3", c3Words, c3Initial)
 
