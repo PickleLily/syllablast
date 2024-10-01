@@ -133,15 +133,17 @@ export class Model {
     }
 
     undoSwap(){
-        let b = this.board
-        let swaps = b.swaps
-        if(swaps.length > 0){
-            b.removeSwap()
-            console.log("trying to undo")
-            this.decrementMoves()
-            this.checkCorrectPosition()
-        }else{
-            return
+        if(this.points != 16){
+            let b = this.board
+            let swaps = b.swaps
+            if(swaps.length > 0){
+                b.removeSwap()
+                console.log("trying to undo")
+                this.decrementMoves()
+                this.checkCorrectPosition()
+            }else{
+                return
+            }
         }
     }
 
