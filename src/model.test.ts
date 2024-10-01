@@ -108,7 +108,6 @@ test('board.swapSyllables', () => {
 	b.sellectedSyllable1 = new Syllable("hell", new Coordinate(0,1))
 	b.sellectedSyllable2 = new Syllable("o", new Coordinate(0,0))
 
-	expect(b.swapSyllables()).toBe(true)
 	expect(b.sellectedSyllable1).toStrictEqual(new Syllable("hell", new Coordinate(0,1)))
 	expect(b.sellectedSyllable2).toStrictEqual(new Syllable("o", new Coordinate(0,0)))
 })

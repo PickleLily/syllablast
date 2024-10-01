@@ -99,6 +99,8 @@ export class Board {
 
             this.syllables[s1coord.getRow()][s1coord.getCol()].syllable = s2
             this.syllables[s2coord.getRow()][s2coord.getCol()].syllable = s1
+        }else{
+            return false
         }
     }
 }
