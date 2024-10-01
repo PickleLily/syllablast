@@ -30,6 +30,9 @@ export default function Home() {
 		model.checkCorrectPosition()
 		model.calculatePoints()
 		setRedraw(redraw+1)
+		if(model.points == 16){
+			model.congratulationsMessage()
+		}
 		model.board.sellectedSyllable1 = undefined
 		model.board.sellectedSyllable2 = undefined
 	}

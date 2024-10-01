@@ -192,4 +192,8 @@ export class Model {
         this.points = count
         return this.points
     }
+
+    congratulationsMessage(){
+        alert("Congratulations!")
+    }
 }
